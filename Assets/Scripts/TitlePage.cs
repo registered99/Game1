@@ -12,18 +12,20 @@ public class TitlePage : FContainer
 
 	public TitlePage ()
 	{
-		_background = new FSprite("JungleBG.png");
+		_background = new FSprite("JungleBlurryBG");
 		AddChild (_background);
 		
-		_mainLogo = new FSprite("MainLogo.png");
+		_mainLogo = new FSprite("MainLogo");
 		AddChild (_mainLogo);
 		
-		_startButton = new FButton("YellowButton_normal.png", "YellowButton_over.png");
+		_startButton = new FButton("YellowButton_normal", "YellowButton_over");
 		_startButton.AddLabel ("Franchise","Start!",Color.white);
+		AddChild (_startButton);
 		
 	}
 	private void HandleStartButtonRelease(FButton button){
 		PoopGame.instance.SwitchToInGame();
+
 	}
 }
 

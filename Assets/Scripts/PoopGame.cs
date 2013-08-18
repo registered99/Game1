@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PoopGame : MonoBehaviour{
 
@@ -15,6 +17,9 @@ public class PoopGame : MonoBehaviour{
 		fparams.origin = new Vector2(0.5f, 0.5f);
 		Futile.instance.Init (fparams);
 		Futile.atlasManager.LoadAtlas("Atlases/Banana");
+		Futile.atlasManager.LoadAtlas("Atlases/BananaLargeAtlas");
+		Futile.atlasManager.LoadAtlas("Atlases/BananaGameAtlas"); // one of these is important for Font. I guess font is inside the atlas? 
+			
 		Futile.atlasManager.LoadFont("Franchise","FranchiseFont"+Futile.resourceSuffix, "Atlases/FranchiseFont"+Futile.resourceSuffix, 0.0f,-4.0f);
 		
 		SwitchToTitlePage();
