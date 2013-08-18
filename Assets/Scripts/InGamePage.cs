@@ -1,12 +1,16 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using System;
 
-namespace AssemblyCSharp
+public class InGamePage : FContainer //FMultiTouchableInterface
 {
-	public class InGamePage
+	private FSprite _background;
+	public InGamePage()
 	{
-		public InGamePage ()
-		{
-		}
+		_background = new FSprite("JungleBlurryBG");
+		AddChild (_background);
+
 	}
 }
 

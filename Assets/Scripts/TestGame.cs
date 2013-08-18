@@ -3,12 +3,12 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class PoopGame : MonoBehaviour{
+public class TestGame : MonoBehaviour{
 
 	private FContainer _currentPage;
 	
 	// This acts as a singleton
-	public static PoopGame instance;
+	public static TestGame instance;
 	
 	private void Start () {
 		instance = this;
@@ -23,6 +23,8 @@ public class PoopGame : MonoBehaviour{
 		Futile.atlasManager.LoadFont("Franchise","FranchiseFont"+Futile.resourceSuffix, "Atlases/FranchiseFont"+Futile.resourceSuffix, 0.0f,-4.0f);
 		
 		SwitchToTitlePage();
+		//SwitchToInGamePage();
+
 		
 	}
 	public void SwitchToTitlePage(){
@@ -31,6 +33,10 @@ public class PoopGame : MonoBehaviour{
 		Futile.stage.AddChild(_currentPage);
 	}
 	public void SwitchToInGame(){
+		if(_currentPage != null) _currentPage.RemoveFromContainer();
+		_currentPage = new InGamePage();
+		Futile.stage.AddChild(_currentPage);
+
 	}
 	private void Update () {
 

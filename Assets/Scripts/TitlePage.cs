@@ -20,12 +20,13 @@ public class TitlePage : FContainer
 		
 		_startButton = new FButton("YellowButton_normal", "YellowButton_over");
 		_startButton.AddLabel ("Franchise","Start!",Color.white);
+		_startButton.SignalRelease += HandleStartButtonRelease;
+
 		AddChild (_startButton);
 		
 	}
 	private void HandleStartButtonRelease(FButton button){
-		PoopGame.instance.SwitchToInGame();
-
+		TestGame.instance.SwitchToInGame();
 	}
 }
 
