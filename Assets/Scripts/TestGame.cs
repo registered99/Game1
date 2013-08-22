@@ -18,12 +18,13 @@ public class TestGame : MonoBehaviour{
 		Futile.instance.Init (fparams);
 		Futile.atlasManager.LoadAtlas("Atlases/Banana");
 		Futile.atlasManager.LoadAtlas("Atlases/BananaLargeAtlas");
+		Futile.atlasManager.LoadAtlas("Atlases/PongDemo");
 		Futile.atlasManager.LoadAtlas("Atlases/BananaGameAtlas"); // one of these is important for Font. I guess font is inside the atlas? 
 			
 		Futile.atlasManager.LoadFont("Franchise","FranchiseFont"+Futile.resourceSuffix, "Atlases/FranchiseFont"+Futile.resourceSuffix, 0.0f,-4.0f);
 		
-		SwitchToTitlePage();
-		//SwitchToInGamePage();
+//		SwitchToTitlePage();
+		SwitchToInGamePage();
 
 		
 	}
@@ -32,14 +33,13 @@ public class TestGame : MonoBehaviour{
 		_currentPage = new TitlePage();
 		Futile.stage.AddChild(_currentPage);
 	}
-	public void SwitchToInGame(){
+	public void SwitchToInGamePage(){
 		if(_currentPage != null) _currentPage.RemoveFromContainer();
 		_currentPage = new InGamePage();
 		Futile.stage.AddChild(_currentPage);
 
 	}
 	private void Update () {
-
 	}
 	
 }

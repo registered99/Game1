@@ -26,7 +26,7 @@ public class TitlePage : FContainer
 		
 	}
 	private void HandleStartButtonRelease(FButton button){
-		TestGame.instance.SwitchToInGame();
+		TestGame.instance.SwitchToInGamePage();
 	}
 }
 
