@@ -45,15 +45,27 @@ public class InGamePage : FContainer //FMultiTouchableInterface
 		_ball.xVelocity = Mathf.Sqrt ((_ball.defaultVelocity * _ball.defaultVelocity) - (_ball.yVelocity * _ball.yVelocity)) * (RXRandom.Int (2) * 2 - 1);
 	}
 
-	public void Update (float dt)
+	public void Update ()
 	{
+		float _newplayer1Y = _player1.y;
+		float _newplayer2Y = _player2.y;
+		float dt = Time.deltaTime;
 		// Integrate to find the new x and y values for the ball
 		float newBallX = _ball.x + dt * _ball.xVelocity;
 		float newBallY = _ball.y + dt * _ball.yVelocity;
+		
+		// Handle Input
+	    if (Input.GetKey("w")) { _newplayer1Y += dt * _player1.currentVelocity; }
+	    if (Input.GetKey("s")) { _newplayer1Y -= dt * _player1.currentVelocity; }
+	    if (Input.GetKey("up")) { _newplayer2Y += dt * _player2.currentVelocity; }
+	    if (Input.GetKey("down")) { _newplayer2Y -= dt * _player2.currentVelocity; }
+
      
 		// Render the ball at its new location
 		_ball.x = newBallX;
 		_ball.y = newBallY;
+		_player1.y = _newplayer1Y;
+	    _player2.y = _newplayer2Y;
 	}
 }
 
