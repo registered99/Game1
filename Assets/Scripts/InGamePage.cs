@@ -59,6 +59,7 @@ public class InGamePage : FContainer //FMultiTouchableInterface
 	    if (Input.GetKey("s")) { _newplayer1Y -= dt * _player1.currentVelocity; }
 	    if (Input.GetKey("up")) { _newplayer2Y += dt * _player2.currentVelocity; }
 	    if (Input.GetKey("down")) { _newplayer2Y -= dt * _player2.currentVelocity; }
+		if (Input.GetKey ("space")) { ResetBall (); }
 
      
 		// Render the ball at its new location
