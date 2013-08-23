@@ -53,6 +53,29 @@ public class InGamePage : FContainer //FMultiTouchableInterface
 		// Integrate to find the new x and y values for the ball
 		float newBallX = _ball.x + dt * _ball.xVelocity;
 		float newBallY = _ball.y + dt * _ball.yVelocity;
+		// Check for ball-and-wall collisions
+        if (newBallY + (_ball.height/2) >= Futile.screen.halfHeight) {
+            newBallY = Futile.screen.halfHeight - (_ball.height/2) - Mathf.Abs((newBallY - Futile.screen.halfHeight));
+            _ball.yVelocity = -_ball.yVelocity;
+        } else if (newBallY - _ball.height/2 <= -Futile.screen.halfHeight) {
+            newBallY = -Futile.screen.halfHeight + (_ball.height/2) + Mathf.Abs((-Futile.screen.halfHeight - newBallY));
+            _ball.yVelocity = -_ball.yVelocity;
+        }
+		// Check for paddle-and-ball collisions
+		Rect ballRect = _ball.localRect.CloneAndOffset(newBallX, newBallY);
+		Rect player1Rect = _player1.localRect.CloneAndOffset(_player1.x, _newplayer1Y);
+		Rect player2Rect = _player2.localRect.CloneAndOffset(_player2.x, _newplayer2Y);
+		 
+		if (ballRect.CheckIntersect(player1Rect)) {
+		    _ball.xVelocity = -_ball.xVelocity;
+		     
+		}
+		if (ballRect.CheckIntersect(player2Rect)) {
+		    _ball.xVelocity = -_ball.xVelocity;
+		}	
+		// Render the ball at its new location
+		_ball.x = newBallX;
+		_ball.y = newBallY;
 		
 		// Handle Input
 	    if (Input.GetKey("w")) { _newplayer1Y += dt * _player1.currentVelocity; }
@@ -60,11 +83,7 @@ public class InGamePage : FContainer //FMultiTouchableInterface
 	    if (Input.GetKey("up")) { _newplayer2Y += dt * _player2.currentVelocity; }
 	    if (Input.GetKey("down")) { _newplayer2Y -= dt * _player2.currentVelocity; }
 		if (Input.GetKey ("space")) { ResetBall (); }
-
-     
-		// Render the ball at its new location
-		_ball.x = newBallX;
-		_ball.y = newBallY;
+		
 		_player1.y = _newplayer1Y;
 	    _player2.y = _newplayer2Y;
 	}
